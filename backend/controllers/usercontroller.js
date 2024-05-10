@@ -1,18 +1,16 @@
 const Users = require('../models/usersModel')
 const mongoose = require('mongoose')
 
-// get all users
 const getUsers = async (req, res) => {
   const workouts = await Users.find({}).sort({createdAt: -1})
 
   res.status(200).json(workouts)
 }
 
-// create a new user
 const createNewUser = async (req, res) => {
   const {title, load, reps} = req.body
 
-  // add to the database
+
   try {
     const workout = await Users.create({ title, load, reps })
     res.status(200).json(workout)
@@ -21,7 +19,7 @@ const createNewUser = async (req, res) => {
   }
 }
 
-// delete a user
+
 const deleteUser = async (req, res) => {
   const { id } = req.params
 
@@ -38,7 +36,6 @@ const deleteUser = async (req, res) => {
   res.status(200).json(workout)
 }
 
-// update a user
 const updateUser = async (req, res) => {
   const { id } = req.params
 
